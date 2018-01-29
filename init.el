@@ -32,7 +32,7 @@
  '(package-selected-packages
    (quote
     (ensime spaceline smooth-scrolling neotree monokai-theme magit flycheck evil all-the-icons alchemist use-package)))
- '(powerline-default-separator (quote utf-8))
+ '(powerline-default-separator (quote arrow))
  '(require-final-newline t)
  '(scroll-bar-mode nil)
  '(show-trailing-whitespace t)
