@@ -21,6 +21,7 @@
    (quote
     ("53f97243218e8be82ba035ae34c024fd2d2e4de29dc6923e026d5580c77ff702" default)))
  '(flycheck-display-errors-delay 0)
+ '(global-column-enforce-mode t)
  '(global-company-mode t)
  '(global-flycheck-mode t)
  '(indent-tabs-mode nil)
@@ -31,7 +32,7 @@
  '(org-log-done (quote time))
  '(package-selected-packages
    (quote
-    (ensime spaceline smooth-scrolling neotree monokai-theme magit flycheck evil all-the-icons alchemist use-package)))
+    (column-enforce-mode ensime spaceline smooth-scrolling neotree monokai-theme magit flycheck evil all-the-icons alchemist use-package)))
  '(powerline-default-separator (quote arrow))
  '(require-final-newline t)
  '(scroll-bar-mode nil)
@@ -56,6 +57,9 @@
 (use-package all-the-icons
   :ensure t)
 
+(use-package column-enforce-mode
+  :ensure t)
+
 (use-package company
   :ensure t
   :config
@@ -75,11 +79,11 @@
   :ensure t
   :after neotree
   :config
-  (evil-mode 1)
   (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
   (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
   (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-  (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter))
+  (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+  (evil-mode 1))
 
 (use-package flycheck
   :ensure t)
