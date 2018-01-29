@@ -1,6 +1,8 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
 (custom-set-variables
@@ -29,7 +31,7 @@
  '(org-log-done (quote time))
  '(package-selected-packages
    (quote
-    (spaceline smooth-scrolling neotree monokai-theme magit flycheck evil ensime all-the-icons alchemist use-package)))
+    (ensime spaceline smooth-scrolling neotree monokai-theme magit flycheck evil all-the-icons alchemist use-package)))
  '(powerline-default-separator (quote utf-8))
  '(require-final-newline t)
  '(scroll-bar-mode nil)
@@ -66,7 +68,8 @@
   :ensure t)
 
 (use-package ensime
-  :ensure t)
+  :ensure t
+  :pin melpa-stable)
 
 (use-package evil
   :ensure t
