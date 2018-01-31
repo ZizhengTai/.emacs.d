@@ -5,6 +5,10 @@
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
+(eval-when-compile
+  (require 'use-package))
+(require 'bind-key)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -12,9 +16,6 @@
  ;; If there is more than one, they won't work right.
  '(before-save-hook (quote (delete-trailing-whitespace)))
  '(c-basic-offset 4)
- '(company-frontends
-   (quote
-    (company-pseudo-tooltip-unless-just-one-frontend company-echo-metadata-frontend company-preview-frontend)))
  '(company-idle-delay 0)
  '(company-require-match nil)
  '(custom-enabled-themes (quote (monokai)))
@@ -22,9 +23,9 @@
    (quote
     ("53f97243218e8be82ba035ae34c024fd2d2e4de29dc6923e026d5580c77ff702" default)))
  '(flycheck-display-errors-delay 0)
- '(global-column-enforce-mode t)
  '(global-company-mode t)
  '(global-flycheck-mode t)
+ '(global-whitespace-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(neo-smart-open t)
@@ -33,7 +34,7 @@
  '(org-log-done (quote time))
  '(package-selected-packages
    (quote
-    (column-enforce-mode ensime spaceline smooth-scrolling neotree monokai-theme magit flycheck evil all-the-icons alchemist use-package)))
+    (alchemist all-the-icons ensime evil flycheck magit monokai-theme neotree smooth-scrolling spaceline use-package)))
  '(powerline-default-separator (quote arrow))
  '(require-final-newline t)
  '(scroll-bar-mode nil)
@@ -41,13 +42,15 @@
  '(smooth-scroll-margin 1)
  '(smooth-scrolling-mode t)
  '(tab-stop-list (quote (4 8)))
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(whitespace-style (quote (face lines-tail))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono for Powerline" :foundry "PfEd" :slant normal :weight normal :height 120 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono for Powerline" :foundry "PfEd" :slant normal :weight normal :height 120 :width normal))))
+ '(whitespace-line ((t (:background "#F92672" :foreground "white")))))
 
 (use-package alchemist
   :ensure t
@@ -58,16 +61,13 @@
 (use-package all-the-icons
   :ensure t)
 
-(use-package column-enforce-mode
-  :ensure t)
-
 (use-package company
   :ensure t
-  :config
-  (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
-  (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
-  (define-key company-active-map (kbd "S-TAB") 'company-select-previous)
-  (define-key company-active-map (kbd "<backtab>") 'company-select-previous))
+  :bind (:map company-active-map
+              ("TAB" . company-complete-common-or-cycle)
+              ("<tab>" . company-complete-common-or-cycle)
+              ("S-TAB" . company-select-previous)
+              ("<backtab>" . company-select-previous)))
 
 (use-package elixir-mode
   :ensure t)
@@ -91,8 +91,7 @@
 
 (use-package magit
   :ensure t
-  :config
-  (define-key global-map (kbd "C-x g") 'magit-status))
+  :bind ("C-x g" . magit-status))
 
 (use-package monokai-theme
   :ensure t)
@@ -102,9 +101,8 @@
 
 (use-package org
   :ensure t
-  :config
-  (define-key global-map (kbd "C-c l") 'org-store-link)
-  (define-key global-map (kbd "C-c a") 'org-agenda))
+  :bind (("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)))
 
 (use-package smooth-scrolling
   :ensure t)
