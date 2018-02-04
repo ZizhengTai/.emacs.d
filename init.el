@@ -21,13 +21,15 @@
  '(custom-enabled-themes (quote (monokai)))
  '(custom-safe-themes
    (quote
-    ("53f97243218e8be82ba035ae34c024fd2d2e4de29dc6923e026d5580c77ff702" default)))
+    ("d3a406c5905923546d8a3ad0164a266deaf451856eca5f21b36594ffcb08413a" default)))
  '(flycheck-display-errors-delay 0)
  '(global-company-mode t)
  '(global-flycheck-mode t)
+ '(global-linum-mode t)
  '(global-whitespace-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(linum-format (quote linum-format-func))
  '(neo-smart-open t)
  '(neo-theme (quote icons))
  '(org-from-is-user-regexp "\\<Zizheng Tai\\>")
@@ -50,6 +52,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "DejaVu Sans Mono for Powerline" :foundry "PfEd" :slant normal :weight normal :height 120 :width normal))))
+ '(linum ((t (:inherit default :background "#313335" :foreground "#8F908A" :underline nil))))
  '(whitespace-line ((t (:background "#F92672" :foreground "white")))))
 
 (use-package alchemist
@@ -89,6 +92,19 @@
 (use-package flycheck
   :ensure t)
 
+(use-package linum
+  :ensure t
+  :config
+  (defvar-local linum-format-string nil)
+  (add-hook 'linum-before-numbering-hook
+            (lambda ()
+              (setq linum-format-string
+                    (let ((w (length (number-to-string
+                                      (count-lines (point-min) (point-max))))))
+                      (concat "%" (number-to-string (max 3 w)) "d ")))))
+  (defun linum-format-func (line)
+    (propertize (format linum-format-string line) 'face 'linum)))
+
 (use-package magit
   :ensure t
   :bind ("C-x g" . magit-status))
@@ -112,3 +128,5 @@
   :config
   (require 'spaceline-config)
   (spaceline-spacemacs-theme))
+
+;;; init.el ends here
