@@ -18,9 +18,9 @@
  '(c-basic-offset 4)
  '(company-idle-delay 0)
  '(company-require-match nil)
- '(custom-enabled-themes '(monokai))
+ '(custom-enabled-themes '(dracula))
  '(custom-safe-themes
-   '("d3a406c5905923546d8a3ad0164a266deaf451856eca5f21b36594ffcb08413a" default))
+   '("ff7625ad8aa2615eae96d6b4469fcc7d3d20b2e1ebc63b761a349bebbb9d23cb" default))
  '(flycheck-display-errors-delay 0)
  '(global-company-mode t)
  '(global-display-line-numbers-mode t)
@@ -33,7 +33,7 @@
  '(org-from-is-user-regexp "\\<Zizheng Tai\\>")
  '(org-log-done 'time)
  '(package-selected-packages
-   '(alchemist all-the-icons ensime evil flycheck magit monokai-theme neotree smooth-scrolling spaceline use-package))
+   '(alchemist all-the-icons dracula-theme ensime evil flycheck magit neotree smooth-scrolling spaceline use-package))
  '(powerline-default-separator 'arrow)
  '(require-final-newline t)
  '(scroll-bar-mode nil)
@@ -51,7 +51,7 @@
  '(default ((t (:family "DejaVu Sans Mono for Powerline" :foundry "PfEd" :slant normal :weight normal :height 120 :width normal))))
  '(line-number ((t (:inherit (shadow default) :slant italic))))
  '(line-number-current-line ((t (:inherit line-number :foreground "white" :slant italic :weight bold))))
- '(whitespace-line ((t (:background "#F92672" :foreground "white")))))
+ '(whitespace-line ((t (:background "#FF5555" :foreground "#F8F8F2")))))
 
 (use-package alchemist
   :ensure t
@@ -69,6 +69,9 @@
               ("<tab>" . company-complete-common-or-cycle)
               ("S-TAB" . company-select-previous)
               ("<backtab>" . company-select-previous)))
+
+(use-package dracula-theme
+  :ensure t)
 
 (use-package elixir-mode
   :ensure t)
@@ -93,9 +96,6 @@
 (use-package magit
   :ensure t
   :bind ("C-x g" . magit-status))
-
-(use-package monokai-theme
-  :ensure t)
 
 (use-package neotree
   :ensure t)
