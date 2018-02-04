@@ -52,7 +52,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "DejaVu Sans Mono for Powerline" :foundry "PfEd" :slant normal :weight normal :height 120 :width normal))))
- '(linum ((t (:inherit default :background "#313335" :foreground "#8F908A" :underline nil))))
+ '(linum ((t (:inherit default :slant italic))))
  '(whitespace-line ((t (:background "#F92672" :foreground "white")))))
 
 (use-package alchemist
