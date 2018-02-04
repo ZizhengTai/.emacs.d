@@ -14,45 +14,43 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(before-save-hook (quote (delete-trailing-whitespace)))
+ '(before-save-hook '(delete-trailing-whitespace))
  '(c-basic-offset 4)
  '(company-idle-delay 0)
  '(company-require-match nil)
- '(custom-enabled-themes (quote (monokai)))
+ '(custom-enabled-themes '(monokai))
  '(custom-safe-themes
-   (quote
-    ("d3a406c5905923546d8a3ad0164a266deaf451856eca5f21b36594ffcb08413a" default)))
+   '("d3a406c5905923546d8a3ad0164a266deaf451856eca5f21b36594ffcb08413a" default))
  '(flycheck-display-errors-delay 0)
  '(global-company-mode t)
+ '(global-display-line-numbers-mode t)
  '(global-flycheck-mode t)
- '(global-linum-mode t)
  '(global-whitespace-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
- '(linum-format (quote linum-format-func))
  '(neo-smart-open t)
- '(neo-theme (quote icons))
+ '(neo-theme 'icons)
  '(org-from-is-user-regexp "\\<Zizheng Tai\\>")
- '(org-log-done (quote time))
+ '(org-log-done 'time)
  '(package-selected-packages
-   (quote
-    (alchemist all-the-icons ensime evil flycheck magit monokai-theme neotree smooth-scrolling spaceline use-package)))
- '(powerline-default-separator (quote arrow))
+   '(alchemist all-the-icons ensime evil flycheck magit monokai-theme neotree smooth-scrolling spaceline use-package))
+ '(powerline-default-separator 'arrow)
  '(require-final-newline t)
  '(scroll-bar-mode nil)
  '(show-trailing-whitespace t)
  '(smooth-scroll-margin 1)
  '(smooth-scrolling-mode t)
- '(tab-stop-list (quote (4 8)))
+ '(tab-stop-list '(4 8))
  '(tool-bar-mode nil)
- '(whitespace-style (quote (face lines-tail))))
+ '(whitespace-style '(face lines-tail)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "DejaVu Sans Mono for Powerline" :foundry "PfEd" :slant normal :weight normal :height 120 :width normal))))
- '(linum ((t (:inherit default :slant italic))))
+ '(line-number ((t (:inherit (shadow default) :slant italic))))
+ '(line-number-current-line ((t (:inherit line-number :foreground "white" :slant italic :weight bold))))
  '(whitespace-line ((t (:background "#F92672" :foreground "white")))))
 
 (use-package alchemist
@@ -91,19 +89,6 @@
 
 (use-package flycheck
   :ensure t)
-
-(use-package linum
-  :ensure t
-  :config
-  (defvar-local linum-format-string nil)
-  (add-hook 'linum-before-numbering-hook
-            (lambda ()
-              (setq linum-format-string
-                    (let ((w (length (number-to-string
-                                      (count-lines (point-min) (point-max))))))
-                      (concat "%" (number-to-string (max 3 w)) "d ")))))
-  (defun linum-format-func (line)
-    (propertize (format linum-format-string line) 'face 'linum)))
 
 (use-package magit
   :ensure t
