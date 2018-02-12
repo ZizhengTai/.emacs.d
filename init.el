@@ -108,7 +108,11 @@
 
 (use-package magit
   :ensure t
-  :bind ("C-x g" . magit-status))
+  :bind ("C-x g" . magit-status)
+  :config
+  (defun not-magit-mode ()
+    (not (derived-mode-p 'magit-mode)))
+  (add-function :before-while whitespace-enable-predicate 'not-magit-mode))
 
 (use-package neotree
   :ensure t)
