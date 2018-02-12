@@ -14,13 +14,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(before-save-hook '(delete-trailing-whitespace))
+ '(before-save-hook (quote (delete-trailing-whitespace)))
  '(c-basic-offset 4)
  '(company-idle-delay 0)
  '(company-require-match nil)
- '(custom-enabled-themes '(dracula))
+ '(custom-enabled-themes (quote (dracula)))
  '(custom-safe-themes
-   '("ff7625ad8aa2615eae96d6b4469fcc7d3d20b2e1ebc63b761a349bebbb9d23cb" default))
+   (quote
+    ("ff7625ad8aa2615eae96d6b4469fcc7d3d20b2e1ebc63b761a349bebbb9d23cb" default)))
+ '(elpy-rpc-python-command "python3")
  '(flycheck-display-errors-delay 0)
  '(global-company-mode t)
  '(global-display-line-numbers-mode t)
@@ -29,20 +31,22 @@
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(neo-smart-open t)
- '(neo-theme 'icons)
+ '(neo-theme (quote icons))
  '(org-from-is-user-regexp "\\<Zizheng Tai\\>")
- '(org-log-done 'time)
+ '(org-log-done (quote time))
  '(package-selected-packages
-   '(alchemist all-the-icons dracula-theme ensime evil flycheck magit neotree smooth-scrolling spaceline use-package))
- '(powerline-default-separator 'arrow)
+   (quote
+    (alchemist all-the-icons dracula-theme elixir-mode elpy ensime evil evil-magit flycheck magit neotree smooth-scrolling spaceline use-package)))
+ '(powerline-default-separator (quote arrow))
+ '(powerline-image-apple-rgb t)
  '(require-final-newline t)
  '(scroll-bar-mode nil)
  '(show-trailing-whitespace t)
  '(smooth-scroll-margin 1)
  '(smooth-scrolling-mode t)
- '(tab-stop-list '(4 8))
+ '(tab-stop-list (quote (4 8)))
  '(tool-bar-mode nil)
- '(whitespace-style '(face lines-tail)))
+ '(whitespace-style (quote (face lines-tail))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -76,6 +80,11 @@
 (use-package elixir-mode
   :ensure t)
 
+(use-package elpy
+  :ensure t
+  :config
+  (elpy-enable))
+
 (use-package ensime
   :ensure t
   :pin melpa-stable)
@@ -89,6 +98,10 @@
   (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
   (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
   (evil-mode 1))
+
+(use-package evil-magit
+  :ensure t
+  :after (evil magit))
 
 (use-package flycheck
   :ensure t)
