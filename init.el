@@ -38,7 +38,7 @@
    (quote
     (alchemist all-the-icons dracula-theme elixir-mode elpy ensime evil evil-magit flycheck magit neotree smooth-scrolling spaceline use-package)))
  '(powerline-default-separator (quote arrow))
- '(powerline-image-apple-rgb t)
+ '(powerline-image-apple-rgb (eq system-type 'darwin))
  '(require-final-newline t)
  '(scroll-bar-mode nil)
  '(show-trailing-whitespace t)
