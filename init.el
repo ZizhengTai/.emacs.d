@@ -21,7 +21,7 @@
  '(custom-enabled-themes (quote (dracula)))
  '(custom-safe-themes
    (quote
-    ("ff7625ad8aa2615eae96d6b4469fcc7d3d20b2e1ebc63b761a349bebbb9d23cb" default)))
+    ("a4df5d4a4c343b2712a8ed16bc1488807cd71b25e3108e648d4a26b02bc990b3" "eecacf3fb8efc90e6f7478f6143fd168342bbfa261654a754c7d47761cec07c8" "ff7625ad8aa2615eae96d6b4469fcc7d3d20b2e1ebc63b761a349bebbb9d23cb" default)))
  '(elpy-rpc-python-command "python3")
  '(flycheck-display-errors-delay 0)
  '(global-company-mode t)
@@ -36,9 +36,9 @@
  '(org-log-done (quote time))
  '(package-selected-packages
    (quote
-    (alchemist all-the-icons dracula-theme elixir-mode elpy ensime evil evil-magit flycheck magit neotree smooth-scrolling spaceline use-package)))
+    (all-the-icons dracula-theme elixir-mode elpy ensime evil evil-magit flycheck magit neotree rainbow-delimiter smooth-scrolling spaceline use-package)))
  '(powerline-default-separator (quote arrow))
- '(powerline-image-apple-rgb (eq system-type 'darwin))
+ '(powerline-image-apple-rgb (eq system-type (quote darwin)))
  '(require-final-newline t)
  '(scroll-bar-mode nil)
  '(show-trailing-whitespace t)
@@ -117,6 +117,11 @@
   :ensure t
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)))
+
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package smooth-scrolling
   :ensure t)
