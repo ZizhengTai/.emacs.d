@@ -36,7 +36,7 @@
  '(org-log-done (quote time))
  '(package-selected-packages
    (quote
-    (all-the-icons dracula-theme elixir-mode elpy ensime evil evil-magit flycheck magit neotree rainbow-delimiter smooth-scrolling spaceline use-package)))
+    (alchemist all-the-icons dracula-theme elixir-mode elpy ensime evil evil-magit flycheck magit neotree rainbow-delimiters smooth-scrolling spaceline use-package)))
  '(powerline-default-separator (quote arrow))
  '(powerline-image-apple-rgb (eq system-type (quote darwin)))
  '(require-final-newline t)
