@@ -30,6 +30,7 @@
  '(global-whitespace-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(make-backup-files nil)
  '(neo-smart-open t)
  '(neo-theme (quote icons))
  '(org-from-is-user-regexp "\\<Zizheng Tai\\>")
